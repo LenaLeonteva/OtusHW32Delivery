@@ -1,0 +1,49 @@
+openapi: '3.0.2'
+info:
+  title: Delivery
+  version: '1.0'
+paths:
+  /courier/add:
+    post:
+      operationId: addCourier
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Courier"
+        description: Created order object
+        required: true
+  /courier/reserve:
+    post:
+      operationId: reserveCourier
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourierReserv"
+        description: Created order object
+        required: true
+components:
+  schemas:
+    Courier:
+      type: object
+      properties:
+        courier_id:
+          type: integer
+    CourierReserv:
+      type: object
+      properties:
+        order_id:
+          type: string
+        courier_id:
+          type: integer
+        date:
+          type: string
