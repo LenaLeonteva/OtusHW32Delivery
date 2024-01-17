@@ -129,8 +129,55 @@ export class OpenApiController {
     if (!courier) return this.response.status(404).send({
       error: "Error! The courier wasn't found"
     })
-     const result= await this.reservRepo.create(_requestBody);
-     return result
+    const result= await this.reservRepo.create(_requestBody);
+    return result
   }
+
+  
+/**
+   *
+   *
+   * @param _requestBody Created order object
+   */
+@operation('delete', '/courier/reserve', {
+  operationId: 'deleteReserve',
+  description: '',
+  parameters: [],
+  responses: {
+    '200': {
+      description: 'OK',
+    },
+  },
+  requestBody: {
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/CourierReserv',
+        },
+      },
+    },
+    description: 'Created order object',
+    required: true,
+  },
+})
+  async deleteReserve(@requestBody({
+  content: {
+    'application/json': {
+      schema: {
+        $ref: '#/components/schemas/CourierReserv',
+      },
+    },
+  },
+  description: 'Created order object',
+  required: true,
+}) _requestBody: CourierReserv): Promise<unknown> {
+    console.log(_requestBody)
+    let reserve= await this.reservRepo.findById(_requestBody.order_id);
+    console.log('DELETE');
+    await this.reservRepo.delete(reserve);
+    return 
+  }
+
+
 }
 

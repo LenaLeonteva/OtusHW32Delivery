@@ -30,7 +30,7 @@ export class Courier extends Entity {
   @property({
   type: 'string',
 })
-  name: string;
+  name?: string;
 
 }
 

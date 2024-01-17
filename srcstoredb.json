@@ -1,7 +1,7 @@
 {
   "ids": {
     "Courier": 4,
-    "CourierReserv": 2
+    "CourierReserv": 5
   },
   "models": {
     "Courier": {
@@ -10,7 +10,7 @@
       "3": "{\"name\":\"Коля\",\"courier_id\":3}"
     },
     "CourierReserv": {
-      "abc": "{\"order_id\":\"abc\",\"courier_id\":1,\"date\":\"25.12.2024 10:00\"}"
+      "abcde": "{\"order_id\":\"abcde\",\"courier_id\":2,\"date\":\"25.12.2024 10:00\"}"
     }
   }
 }

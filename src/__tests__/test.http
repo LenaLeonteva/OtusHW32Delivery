@@ -14,7 +14,15 @@ POST http://127.0.0.1:3000/courier/reserve
 Content-Type: application/json
 
 {
-    "order_id": "abc",
-    "courier_id": 1,
+    "order_id": "abcde",
+    "courier_id": 2,
     "date": "25.12.2024 10:00"
+}
+
+###
+DELETE http://127.0.0.1:3000/courier/reserve
+Content-Type: application/json
+
+{
+    "order_id": "abcd"
 }

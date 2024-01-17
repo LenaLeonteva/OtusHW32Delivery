@@ -29,7 +29,19 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/CourierReserv"
-        description: Created order object
+        description: Created reserve courier
+        required: true
+    delete:
+      operationId: deleteReserve
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourierReserv"
+        description: Delete reserve courier
         required: true
 components:
   schemas:
