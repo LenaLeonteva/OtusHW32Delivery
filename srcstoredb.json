@@ -1,0 +1,16 @@
+{
+  "ids": {
+    "Courier": 4,
+    "CourierReserv": 2
+  },
+  "models": {
+    "Courier": {
+      "1": "{\"name\":\"Вася\",\"courier_id\":1}",
+      "2": "{\"name\":\"Петя\",\"courier_id\":2}",
+      "3": "{\"name\":\"Коля\",\"courier_id\":3}"
+    },
+    "CourierReserv": {
+      "abc": "{\"order_id\":\"abc\",\"courier_id\":1,\"date\":\"25.12.2024 10:00\"}"
+    }
+  }
+}

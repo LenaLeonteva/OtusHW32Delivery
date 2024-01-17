@@ -1,12 +1,13 @@
-import {model, property} from '@loopback/repository';
+import {Entity, model, property} from '@loopback/repository';
 
 /**
  * The model class is generated from OpenAPI schema - CourierReserv
  * CourierReserv
  */
 @model({name: 'CourierReserv'})
-export class CourierReserv {
+export class CourierReserv extends Entity {
   constructor(data?: Partial<CourierReserv>) {
+    super(data);
     if (data != null && typeof data === 'object') {
       Object.assign(this, data);
     }
@@ -15,17 +16,20 @@ export class CourierReserv {
   /**
    *
    */
-  @property({jsonSchema: {
+  @property({
   type: 'string',
-}})
-  order_id?: string;
+  id: true,
+  generated: false,
+})
+  order_id: string;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'integer',
-}})
+  @property({
+  type: 'number',
+  format: 'int32',
+})
   courier_id?: number;
 
   /**

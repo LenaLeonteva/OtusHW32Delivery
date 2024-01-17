@@ -1,6 +1,10 @@
-import {api, operation, param, requestBody} from '@loopback/rest';
+import {Response, RestBindings, api, operation, param, requestBody} from '@loopback/rest';
 import {Courier} from '../models/courier.model';
 import {CourierReserv} from '../models/courier-reserv.model';
+import { repository } from '@loopback/repository';
+import { CourierRepository, CourierReservRepository } from '../repositories';
+import { randomInt } from 'crypto';
+import { inject } from '@loopback/core';
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -14,7 +18,10 @@ import {CourierReserv} from '../models/courier-reserv.model';
         type: 'object',
         properties: {
           courier_id: {
-            type: 'integer',
+            type: 'number',
+          },
+          name: {
+            type: 'string',
           },
         },
       },
@@ -25,7 +32,7 @@ import {CourierReserv} from '../models/courier-reserv.model';
             type: 'string',
           },
           courier_id: {
-            type: 'integer',
+            type: 'number',
           },
           date: {
             type: 'string',
@@ -37,7 +44,11 @@ import {CourierReserv} from '../models/courier-reserv.model';
   paths: {},
 })
 export class OpenApiController {
-    constructor() {} 
+    constructor(
+      @repository(CourierRepository) private courierRepo: CourierRepository,
+      @repository(CourierReservRepository) private reservRepo: CourierReservRepository,
+      @inject(RestBindings.Http.RESPONSE) private response: Response,
+    ) {} 
   /**
    *
    *
@@ -73,7 +84,9 @@ export class OpenApiController {
   description: 'Created order object',
   required: true,
 }) _requestBody: Courier): Promise<unknown> {
-     throw new Error('Not implemented'); 
+  console.log("ADD", _requestBody)
+  const result = await this.courierRepo.create(_requestBody);
+  return result
   }
   /**
    *
@@ -112,7 +125,12 @@ export class OpenApiController {
   description: 'Created order object',
   required: true,
 }) _requestBody: CourierReserv): Promise<unknown> {
-     throw new Error('Not implemented'); 
+    let courier=await this.courierRepo.findById(_requestBody.courier_id);
+    if (!courier) return this.response.status(404).send({
+      error: "Error! The courier wasn't found"
+    })
+     const result= await this.reservRepo.create(_requestBody);
+     return result
   }
 }
 

@@ -37,13 +37,17 @@ components:
       type: object
       properties:
         courier_id:
-          type: integer
+          type: number
+          format: int32
+        name:
+          type: string
     CourierReserv:
       type: object
       properties:
         order_id:
           type: string
         courier_id:
-          type: integer
+          type: number
+          format: int32
         date:
           type: string
