@@ -35,9 +35,9 @@ export class CourierReserv extends Entity {
   /**
    *
    */
-  @property({jsonSchema: {
+  @property({
   type: 'string',
-}})
+})
   date?: string;
 
 }

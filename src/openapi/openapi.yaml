@@ -14,7 +14,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Courier"
-        description: Created order object
+        description: Created courier
         required: true
   /courier/reserve:
     post:
