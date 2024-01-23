@@ -1,0 +1,17 @@
+{
+  "ids": {
+    "Courier": 4,
+    "CourierReserv": 6
+  },
+  "models": {
+    "Courier": {
+    },
+    "CourierReserv": {
+      "abcde": "{\"order_id\":\"abcde\",\"date\":\"25.12.2024 10:00\"}",
+      "abcdfe": "{\"order_id\":\"abcdfe\",\"courier_id\":1,\"date\":\"25.12.2024 10:00\"}",
+      "bbcdfe": "{\"order_id\":\"bbcdfe\",\"courier_id\":1,\"date\":\"25.12.2024 10:00\"}",
+      "bbckdfe": "{\"order_id\":\"bbckdfe\",\"courier_id\":3,\"date\":\"25.12.2024 10:00\"}",
+      "a9dcd83b-2d4c-43e8-888b-ad8c73ae4989": "{\"order_id\":\"a9dcd83b-2d4c-43e8-888b-ad8c73ae4989\",\"courier_id\":1,\"date\":\"24.01.2024\"}"
+    }
+  }
+}

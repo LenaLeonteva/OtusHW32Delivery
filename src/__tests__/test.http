@@ -1,26 +1,43 @@
+@host=http://127.0.0.1:3003
+
 ### 
-POST http://127.0.0.1:3000/courier/add
+POST {{host}}/courier/add
 Content-Type: application/json
 
 {
     "name": "Коля"
 }
 
-###
-GET http://127.0.0.1:3000/ping
-
 ### 
-POST http://127.0.0.1:3000/courier/reserve
+POST {{host}}/courier/add
 Content-Type: application/json
 
 {
-    "order_id": "abcde",
-    "courier_id": 2,
+    "name": "Петя"
+}
+
+### 
+POST {{host}}/courier/add
+Content-Type: application/json
+
+{
+    "name": "Вася"
+}
+
+###
+GET {{host}}/ping
+
+### 
+POST {{host}}/courier/reserve
+Content-Type: application/json
+
+{
+    "order_id": "bbckdfe",
     "date": "25.12.2024 10:00"
 }
 
 ###
-DELETE http://127.0.0.1:3000/courier/reserve
+DELETE {{host}}/courier/reserve
 Content-Type: application/json
 
 {

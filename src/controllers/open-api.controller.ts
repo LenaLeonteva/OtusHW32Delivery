@@ -125,10 +125,21 @@ export class OpenApiController {
   description: 'Created order object',
   required: true,
 }) _requestBody: CourierReserv): Promise<unknown> {
-    let courier=await this.courierRepo.findById(_requestBody.courier_id);
+  let courierID: number;
+    if (!_requestBody.courier_id) {
+      const couriers=await this.courierRepo.find();
+      if (!couriers.length) return this.response.status(404).send({error: "Error! The courier wasn't found"});
+      const random=Math.floor(Math.random() * couriers.length);
+      courierID=couriers[random].courier_id??-1;
+      if (courierID<0) return this.response.status(404).send({error: "Error! The courier wasn't found"});
+    } else {
+      courierID=_requestBody.courier_id;
+    }
+    let courier=await this.courierRepo.findById(courierID);
     if (!courier) return this.response.status(404).send({
       error: "Error! The courier wasn't found"
     })
+    _requestBody.courier_id=courierID;
     const result= await this.reservRepo.create(_requestBody);
     return result
   }
