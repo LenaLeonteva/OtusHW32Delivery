@@ -24,6 +24,22 @@ Content-Type: application/json
     "name": "Вася"
 }
 
+### 
+GET {{host}}/courier/add
+Content-Type: application/json
+
+{
+    "courier_id": 4
+}
+
+### 
+GET {{host}}/courier/reserve
+Content-Type: application/json
+
+{
+    "order_id": "bbcdfe"
+}
+
 ###
 GET {{host}}/ping
 

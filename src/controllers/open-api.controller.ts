@@ -88,6 +88,46 @@ export class OpenApiController {
   const result = await this.courierRepo.create(_requestBody);
   return result
   }
+
+   /**
+   *
+   *
+   * @param _requestBody Created order object
+   */
+   @operation('get', '/courier/add', {
+    operationId: 'getCourier',
+    responses: {
+      '200': {
+        description: 'OK',
+      },
+    },
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/Courier',
+          },
+        },
+      },
+      description: 'Created order object',
+      required: true,
+    },
+  })
+    async getCourier(@requestBody({
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/Courier',
+        },
+      },
+    },
+    description: 'Created order object',
+    required: true,
+  }) _requestBody: Courier): Promise<unknown> {
+    console.log("GET", _requestBody)
+    const result = await this.courierRepo.findById(_requestBody.courier_id);
+    return result
+    }
   /**
    *
    *
@@ -187,6 +227,48 @@ export class OpenApiController {
     console.log('DELETE');
     await this.reservRepo.delete(reserve);
     return 
+  }
+
+  /**
+   *
+   *
+   * @param _requestBody Get order object
+   */
+@operation('get', '/courier/reserve', {
+  operationId: 'getReserve',
+  description: '',
+  parameters: [],
+  responses: {
+    '200': {
+      description: 'OK',
+    },
+  },
+  requestBody: {
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/CourierReserv',
+        },
+      },
+    },
+    description: 'Created order object',
+    required: true,
+  },
+})
+  async getReserve(@requestBody({
+  content: {
+    'application/json': {
+      schema: {
+        $ref: '#/components/schemas/CourierReserv',
+      },
+    },
+  },
+  description: 'Created order object',
+  required: true,
+}) _requestBody: CourierReserv): Promise<unknown> {
+    console.log('GET ',_requestBody)
+    let reserve= await this.reservRepo.findById(_requestBody.order_id);
+    return reserve
   }
 
 

@@ -16,6 +16,18 @@ paths:
               $ref: "#/components/schemas/Courier"
         description: Created courier
         required: true
+    get:
+      operationId: getCourier
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Courier"
+        description: Created courier
+        required: true      
   /courier/reserve:
     post:
       operationId: reserveCourier
@@ -42,6 +54,18 @@ paths:
             schema:
               $ref: "#/components/schemas/CourierReserv"
         description: Delete reserve courier
+        required: true
+    get:
+      operationId: getReserve
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CourierReserv"
+        description: Get reserve courier
         required: true
 components:
   schemas:
