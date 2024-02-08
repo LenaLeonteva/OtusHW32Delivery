@@ -94,38 +94,36 @@ export class OpenApiController {
    *
    * @param _requestBody Created order object
    */
-   @operation('get', '/courier/add', {
+   @operation('get', '/courier/{courierId}', {
     operationId: 'getCourier',
     responses: {
       '200': {
         description: 'OK',
       },
     },
-    requestBody: {
-      content: {
-        'application/json': {
-          schema: {
-            $ref: '#/components/schemas/Courier',
-          },
-        },
-      },
-      description: 'Created order object',
-      required: true,
-    },
-  })
-    async getCourier(@requestBody({
-    content: {
-      'application/json': {
+    parameters: [
+      {
+        name: 'courierId',
+        in: 'path',
+        description: 'ID of order',
+        required: true,
         schema: {
-          $ref: '#/components/schemas/Courier',
+          type: 'number',
         },
       },
-    },
-    description: 'Created order object',
-    required: true,
-  }) _requestBody: Courier): Promise<unknown> {
-    console.log("GET", _requestBody)
-    const result = await this.courierRepo.findById(_requestBody.courier_id);
+    ],
+  })
+    async getCourier(@param({
+      name: 'courierId',
+      in: 'path',
+      description: 'ID of courier',
+      required: true,
+      schema: {
+        type: 'number',
+      },
+  }) courierId: number): Promise<unknown> {
+    console.log("GET", courierId)
+    const result = await this.courierRepo.findById(courierId);
     return result
     }
   /**
